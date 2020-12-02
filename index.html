@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>README</title></head>
+<body><h1>GitHub不完全使用指南</h1>
+<h2>创建仓库</h2>
+<p>首先假定：</p>
+<ul>
+<li>用户名usrname</li>
+<li>仓库名tmp</li>
+
+</ul>
+<h3>全新的仓库</h3>
+<p>创建仓库步骤如下：</p>
+<ol start='' >
+<li><p>首先在<a href='https://GitHub.com/new' target='_blank' class='url'>https://GitHub.com/new</a> new一个repository，my_first_repository，会给出仓库地址<a href='https://GitHub.com/usrname/my_first_repository.git' target='_blank' class='url'>https://GitHub.com/usrname/my_first_repository.git</a>，记住这个地址，第7步会用到。</p>
+</li>
+<li><p>本地创建项目文件夹，例如my_first_repository，并初始化git</p>
+<pre><code class='language-shell' lang='shell'>mkdir my_first_repository
+cd my_first_repository
+git init
+</code></pre>
+</li>
+<li><p>创建自己的项目文件，随意编辑内容，例如创建并编辑或复制一个py文件</p>
+<pre><code class='language-shell' lang='shell'>touch my_first_project.py
+</code></pre>
+</li>
+<li><p>将修改添加到本地缓存区</p>
+<pre><code class='language-shell' lang='shell'>git add my_first_project.py
+</code></pre>
+</li>
+<li><p>将缓存区内容提交到本地仓库</p>
+<pre><code class='language-shell' lang='shell'>git commit -m &quot;first commit&quot;
+</code></pre>
+</li>
+<li><p>创建主branch，main，即过去的master（BLM）</p>
+<p>参数<code>-M</code>表示move/rename a branch, even if target exists</p>
+<pre><code class='language-shell' lang='shell'>git branch -M main
+</code></pre>
+</li>
+<li><p>将本地仓库与远程仓库关联。最后一个参数url，就是第一步创建并需要记住的url。origin其实就是这个url的别名，所以可以随意取。</p>
+<pre><code class='language-shell' lang='shell'>git remote add origin https://GitHub.com/usrname/my_first_repository.git
+</code></pre>
+<p>关于remote更多用法，可以参考<a href='https://zhuanlan.zhihu.com/p/144702363?from_voters_page=true'>这里</a>。</p>
+</li>
+<li><p>提交本地仓库到远程仓库</p>
+<pre><code class='language-shell' lang='shell'>git push -u origin main
+</code></pre>
+</li>
+
+</ol>
+<h3>从其他远程仓库</h3>
+<p>完成第一步以后，打开以下链接：</p>
+<p><a href='https://GitHub.com/usrname/my_first_repository/import' target='_blank' class='url'>https://GitHub.com/usrname/my_first_repository/import</a></p>
+<p><em>所以这个和fork有啥区别？</em></p>
+<h2>编辑更新</h2>
+<h3>从远程仓库克隆到本地</h3>
+<ol start='' >
+<li><p>克隆repository</p>
+<pre><code class='language-shell' lang='shell'>git clone https://GitHub.com/usrname/my_first_repository.git
+</code></pre>
+</li>
+<li><p>切换到下载好的本地仓库（其实就是个文件夹）</p>
+<pre><code class='language-shell' lang='shell'>cd my_first_repository
+</code></pre>
+</li>
+<li><p>创建一个新的branch，例如branch_name_2</p>
+<pre><code class='language-shell' lang='shell'>git branch branch_name_2
+</code></pre>
+</li>
+<li><p>将本地新建的branch，push到远程仓库，push完以后，在GitHub上应当能看到新的branch</p>
+<pre><code class='language-shell' lang='shell'>git push --set-upstream origin branch_name_2
+</code></pre>
+</li>
+
+</ol>
+<h3>编辑提交更改</h3>
+<ol start='' >
+<li><p>假定我们刚刚编辑/删除了my_first_project.py，并新建了一个文件，位于new_folder/index.html，提交更改之前，首先检查我们是否处于正确的branch</p>
+<pre><code class='language-shell' lang='shell'>git checkout pepsi
+</code></pre>
+</li>
+<li><p>将更改保存在本地缓冲区</p>
+<pre><code class='language-shell' lang='shell'>git add my_first_project.py
+git add new_folder/index.html
+</code></pre>
+</li>
+<li><p>将本地缓冲区更改提交到本地仓库</p>
+<pre><code class='language-shell' lang='shell'>git commit -m &quot;my-message(e.g. delete my_*.py &amp; create new_folder/index.html)&quot;
+</code></pre>
+</li>
+<li><p>将本地仓库更改提交到GitHub远程仓库</p>
+<pre><code class='language-shell' lang='shell'>git push origin main
+</code></pre>
+</li>
+
+</ol>
+<h3>合并pull request</h3>
+<ol start='' >
+<li><p>检查并切换到主branch</p>
+<pre><code class='language-shell' lang='shell'>git checkout main
+</code></pre>
+</li>
+<li><p>合并branch</p>
+<pre><code class='language-shell' lang='shell'>git merge branch_name_2
+</code></pre>
+</li>
+<li><p>将本地更改提交到远程仓库</p>
+<pre><code class='language-shell' lang='shell'>git push
+</code></pre>
+</li>
+<li><p>删除本地branch</p>
+<pre><code class='language-shell' lang='shell'>git branch -d branch_name_2
+</code></pre>
+</li>
+<li><p>在GitHub上删除branch，branch_name_2。</p>
+</li>
+
+</ol>
+<h2>同步本地仓库</h2>
+<p>将本地仓库更新到远程仓库有两种方式，<code>git fetch</code>和<code>git pull</code>，按照Git手册（<a href='https://training.github.com/downloads/zh_CN/github-git-cheat-sheet/'>中文</a>，<a href='https://training.github.com/downloads/github-git-cheat-sheet/'>英文</a>）的说法，</p>
+<blockquote><p>使用来自 GitHub 的对应远端分支的所有新提交更新你当前的本地工作分支。<code>git pull</code> 是 <code>git fetch</code> 和 <code>git merge</code> 的结合</p>
+</blockquote>
+<blockquote><p>Updates your current local working branch with all new commits from the corresponding remote branch on GitHub. <code>git pull</code> is a combination of <code>git fetch</code> and <code>git merge</code></p>
+</blockquote>
+<p>&nbsp;</p>
+<h2>相关资源</h2>
+<p>Git book:<a href='https://git-scm.com/doc' target='_blank' class='url'>https://git-scm.com/doc</a></p>
+<p>GitHub lab:<a href='https://lab.github.com/' target='_blank' class='url'>https://lab.github.com/</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>
