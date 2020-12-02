@@ -58,7 +58,7 @@
 8. 提交本地仓库到远程仓库
 
    ```shell
-   git push origin -u origin main
+   git push -u origin main
    ```
 
 ### 从其他远程仓库
