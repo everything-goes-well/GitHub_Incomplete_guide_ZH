@@ -11,7 +11,7 @@
 
 创建仓库步骤如下：
 
-1. 首先在https://GitHub.com/new new一个repository，my_first_repository，会给出仓库地址https://GitHub.com/usrname/my_first_repository.git，记住这个地址，第7步会用到。
+1. 首先在https://GitHub.com/new new一个repository，my_first_repository，会给出仓库地址https://GitHub.com/usrname/my_first_repository.git ，记住这个地址，第7步会用到。
 
 2. 本地创建项目文件夹，例如my_first_repository，并初始化git
 
